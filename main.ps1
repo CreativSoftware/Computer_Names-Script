@@ -10,7 +10,7 @@ $hostnames = Import-Excel -Path .\Hostnameslist.xlsx
 $activeComputers = @()
 
 foreach ($hostname in $hostnames) {
-    if (Test-Connection -TargetName $hostname.Names) {
+    if (Test-Connection -TargetName $hostname.Names -Quiet) {
         $activeComputers += $hostname
     }else{
         $name = Get-ADComputer -Identity $hostname.Names
